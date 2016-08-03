@@ -32,27 +32,10 @@ const Tooltip = React.createClass( {
 		const size = 30;
 
 		return (
-			<div>
-				tooltip context&nbsp;
-				<span
-					style={ {
-						width: size,
-						height: size,
-						lineHeight: `${ size }px`,
-						display: 'inline-block',
-						borderRadius: parseInt( size / 2 ),
-						backgroundColor: '#444',
-						color: 'white',
-						fontSize: '12px',
-						cursor: 'pointer',
-						textAlign: 'center',
-					} }
-					onMouseEnter={ this.open }
-					onMouseLeave={ this.close }
-					ref="tooltip-reference"
-				>
-					T
-				</span>
+			<div className="docs__design-assets-group">
+				<h2>
+					<a href="/devdocs/design/tooltip">Tooltip</a>
+				</h2>
 
 				<div>
 					Tooltip context&nbsp;
