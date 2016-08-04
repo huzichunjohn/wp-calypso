@@ -1978,6 +1978,17 @@ Undocumented.prototype.wordAdsApprove = function( siteId ) {
 };
 
 /**
+ * Get stickers that site hase been marked with
+ *
+ * @param {int}       siteId            The site ID
+ * @returns {XMLHttpRequest}          The XHR instance
+ */
+Undocumented.prototype.getStickers = function( siteId, fn ) {
+	debug( '/sites/:site:/blog-stickers' );
+	return this.wpcom.req.get( '/sites/' + siteId + '/blog-stickers', fn );
+};
+
+/**
  * Expose `Undocumented` module
  */
 module.exports = Undocumented;

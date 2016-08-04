@@ -11,6 +11,7 @@ import merge from 'lodash/merge';
 import { plans } from './plans/reducer';
 import domains from './domains/reducer';
 import vouchers from './vouchers/reducer';
+import stickers from './stickers/reducer';
 
 import mediaStorage from './media-storage/reducer';
 import {
@@ -118,5 +119,6 @@ export default combineReducers( {
 	items,
 	mediaStorage,
 	plans,
+	stickers,
 	vouchers
 } );
