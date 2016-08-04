@@ -23,7 +23,6 @@ const NativeCustomizer = React.createClass( {
 
 	componentWillUnmount() {
 		this.props.hidePreviewSidebar();
-		// TODO: or should I use setNext? and do 'sidebar'?
 		layoutFocus.set( 'content' );
 	},
 
