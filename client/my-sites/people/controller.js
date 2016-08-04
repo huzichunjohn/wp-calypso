@@ -30,18 +30,13 @@ import { setNextLayoutFocus } from 'state/ui/layout-focus/actions';
 const sites = sitesList();
 
 export default {
-	redirectToTeam( context ) {
-		// if we are redirecting we need to retain our intended layout-focus
-		const currentLayoutFocus = getCurrentLayoutFocus( context.store.getState() );
-		context.store.dispatch( setNextLayoutFocus( currentLayoutFocus ) );
-		page.redirect( '/people/team' );
-	},
+	redirectToTeam,
 
 	enforceSiteEnding( context, next ) {
 		const siteId = route.getSiteFragment( context.path );
 
 		if ( ! siteId ) {
-			this.redirectToTeam( context );
+			redirectToTeam( context );
 		}
 
 		next();
@@ -59,6 +54,15 @@ export default {
 		renderSingleTeamMember( context );
 	}
 };
+
+function redirectToTeam( context ) {
+	if ( context ) {
+		// if we are redirecting we need to retain our intended layout-focus
+		const currentLayoutFocus = getCurrentLayoutFocus( context.store.getState() );
+		context.store.dispatch( setNextLayoutFocus( currentLayoutFocus ) );
+	}
+	page.redirect( '/people/team' );
+}
 
 function renderPeopleList( filter, context ) {
 	titleActions.setTitle( i18n.translate( 'People', { textOnly: true } ), { siteID: route.getSiteFragment( context.path ) } );
