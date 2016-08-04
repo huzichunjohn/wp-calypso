@@ -61,8 +61,14 @@ export default React.createClass( {
 	renderStoreStep() {
 		switch ( abtest( 'signupStoreBenchmarking' ) ) {
 			case 'bluehost':
-			case 'bluehostWithWoo':
 				return <BluehostStoreStep { ... this.props } onBackClick={ this.handleStoreBackClick } />;
+			case 'bluehostWithWoo':
+				return <BluehostStoreStep
+							{ ... this.props }
+							onBackClick={ this.handleStoreBackClick }
+							partnerName='Bluehost with WooCommerce'
+							partnerUrl='https://www.bluehost.com/web-hosting/signup?flow=woocommerce'
+						/>;
 			case 'siteground':
 				return <SitegroundStoreStep { ... this.props } onBackClick={ this.handleStoreBackClick } />;
 			default:

@@ -83,7 +83,7 @@ module.exports = {
 		allowExistingUsers: false,
 	},
 	signupStoreBenchmarking: {
-		datestamp: '20160805',
+		datestamp: '20160803',
 		variations: {
 			pressable: 94,
 			bluehost: 2,
