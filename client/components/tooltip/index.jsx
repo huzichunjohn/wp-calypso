@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 
 /**
@@ -13,26 +13,9 @@ import viewport from 'lib/viewport';
 /**
  * Module variables
  */
- const noop = () => {};
+const noop = () => {};
 
-export default React.createClass( {
-
-	displayName: 'Tooltip',
-
-	getDefaultProps() {
-		return {
-			position: 'top',
-			showOnMobile: false
-		};
-	},
-
-	propTypes: {
-		isVisible: React.PropTypes.bool,
-		position: React.PropTypes.string,
-		status: React.PropTypes.string,
-		showOnMobile: React.PropTypes.bool
-	},
-
+class Tooltip extends Component {
 	render() {
 		if ( ! this.props.showOnMobile && viewport.isMobile() ) {
 			return null;
@@ -56,4 +39,18 @@ export default React.createClass( {
 			</Popover>
 		);
 	}
-} );
+}
+
+Tooltip.propTypes = {
+	isVisible: PropTypes.bool,
+	position: PropTypes.string,
+	status: PropTypes.string,
+	showOnMobile: PropTypes.bool
+};
+
+Tooltip.defaultProps = {
+	position: 'top',
+	showOnMobile: false
+};
+
+export default Tooltip;

@@ -29,7 +29,7 @@ const Tooltip = React.createClass( {
 	},
 
 	render() {
-		const size = 20;
+		const size = 30;
 
 		return (
 			<div>
@@ -54,16 +54,39 @@ const Tooltip = React.createClass( {
 					T
 				</span>
 
-				<TooltipComponent
-					isVisible={ this.state.show }
-					onClose={ this.close }
-					position={ this.state.position }
-					context={ this.refs && this.refs[ 'tooltip-reference' ] }
-				>
-					<div style={ { padding: '10px' } }>
-						Simple Tooltip Instance
-					</div>
-				</TooltipComponent>
+				<div>
+					Tooltip context&nbsp;
+					<span
+						style={ {
+							width: size,
+							height: size,
+							lineHeight: `${ size }px`,
+							display: 'inline-block',
+							borderRadius: parseInt( size / 2 ),
+							backgroundColor: '#444',
+							color: 'white',
+							fontSize: '12px',
+							cursor: 'pointer',
+							textAlign: 'center',
+						} }
+						onMouseEnter={ this.open }
+						onMouseLeave={ this.close }
+						ref="tooltip-reference"
+					>
+						T
+					</span>
+
+					<TooltipComponent
+						isVisible={ this.state.show }
+						onClose={ this.close }
+						position={ this.state.position }
+						context={ this.refs && this.refs[ 'tooltip-reference' ] }
+					>
+						<div style={ { padding: '10px' } }>
+							Simple Tooltip Instance
+						</div>
+					</TooltipComponent>
+				</div>
 			</div>
 		);
 	}
