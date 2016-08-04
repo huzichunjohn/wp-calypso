@@ -91,8 +91,7 @@ function appendSite( title, site ) {
 	if ( site.name ) {
 		siteName = site.name;
 	} else {
-		// FIXME: site.domain computed attribute. See https://github.com/Automattic/wp-calypso/pull/6477
-		siteName = site.URL.replace( /^https?:\/\//, '' );
+		siteName = site.domain;
 	}
 
 	if ( title ) {
