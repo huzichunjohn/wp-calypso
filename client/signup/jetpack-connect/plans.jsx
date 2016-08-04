@@ -169,7 +169,7 @@ const Plans = React.createClass( {
 								onSelectFreeJetpackPlan={ this.selectFreeJetpackPlan }/>
 						</div>
 					</div>
-					<LiveChatButton { ...this.props } />
+					<LiveChatButton />
 				</Main>
 			</div>
 		);

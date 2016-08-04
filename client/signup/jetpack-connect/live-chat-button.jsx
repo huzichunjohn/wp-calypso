@@ -9,6 +9,9 @@ import React from 'react';
 import Button from 'components/button';
 import Gridicon from 'components/gridicon';
 import olarkActions from 'lib/olark-store/actions';
+import UserModule from 'lib/user';
+
+const user = UserModule();
 
 export default React.createClass( {
 	displayName: 'JetpackConnectLiveChatButton',
@@ -18,7 +21,7 @@ export default React.createClass( {
 	},
 
 	render() {
-		if ( ! this.props.userModule.get() ) {
+		if ( ! user.get() ) {
 			return null;
 		}
 

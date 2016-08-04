@@ -472,7 +472,7 @@ const JetpackConnectAuthorizeForm = React.createClass( {
 					action={ this.translate( 'Get back to Jetpack Connect screen' ) }
 					actionURL="/jetpack/connect"
 				/>
-				<LiveChatButton { ...this.props } />
+				<LiveChatButton />
 			</Main>
 		);
 	},
@@ -505,7 +505,7 @@ const JetpackConnectAuthorizeForm = React.createClass( {
 				<div className="jetpack-connect__authorize-form">
 					{ this.renderForm() }
 				</div>
-				<LiveChatButton { ...this.props } />
+				<LiveChatButton />
 			</Main>
 		);
 	}
