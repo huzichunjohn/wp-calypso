@@ -39,73 +39,6 @@ export default React.createClass( {
 		this._pressableStore = pressableStoreStep;
 	},
 
-	renderChoice( choice ) {
-		return (
-			<Card className="design-type-with-store__choice" key={ choice.type }>
-				<a className="design-type-with-store__choice__link" href="#" onClick={ ( event ) => this.handleChoiceClick( event, choice.type ) }>
-					{ choice.image }
-					<h2>{ choice.label }</h2>
-				</a>
-			</Card>
-		);
-	},
-
-	renderChoices() {
-		return (
-			<div className="design-type-with-store__list">
-				{ this.getChoices().map( this.renderChoice ) }
-			</div>
-		);
-	},
-
-	renderStoreStep() {
-		switch ( abtest( 'signupStoreBenchmarking' ) ) {
-			case 'bluehost':
-				return <BluehostStoreStep { ... this.props } onBackClick={ this.handleStoreBackClick } />;
-			case 'bluehostWithWoo':
-				return <BluehostStoreStep
-							{ ... this.props }
-							onBackClick={ this.handleStoreBackClick }
-							partnerName='Bluehost with WooCommerce'
-							partnerUrl='https://www.bluehost.com/web-hosting/signup?flow=woocommerce'
-						/>;
-			case 'siteground':
-				return <SitegroundStoreStep { ... this.props } onBackClick={ this.handleStoreBackClick } />;
-			default:
-				return <PressableStoreStep { ... this.props } ref={ this.onPressableStoreStepRef } onBackClick={ this.handleStoreBackClick } />;
-		}
-	},
-
-	render() {
-		const storeWrapperClassName = classNames( {
-			'design-type-with-store__store-wrapper': true,
-			'is-hidden': ! this.state.showStore,
-		} );
-
-		const sectionWrapperClassName = classNames( {
-			'design-type-with-store__section-wrapper': true,
-			'is-hidden': this.state.showStore,
-		} );
-
-		return (
-			<div className="design-type-with-store">
-				<div className={ storeWrapperClassName } >
-					{ this.renderStoreStep() }
-				</div>
-				<div className={ sectionWrapperClassName }>
-					<StepWrapper
-						flowName={ this.props.flowName }
-						stepName={ this.props.stepName }
-						positionInFlow={ this.props.positionInFlow }
-						fallbackHeaderText={ this.translate( 'What would you like your homepage to look like?' ) }
-						fallbackSubHeaderText={ this.translate( 'This will help us figure out what kinds of designs to show you.' ) }
-						signupProgressStore={ this.props.signupProgressStore }
-						stepContent={ this.renderChoices() } />
-				</div>
-			</div>
-		);
-	},
-
 	scrollUp() {
 		this.windowScroller = setInterval( () => {
 			if ( window.pageYOffset > 0 ) {
@@ -150,5 +83,72 @@ export default React.createClass( {
 
 		SignupActions.submitSignupStep( { stepName: this.props.stepName }, [], { designType } );
 		this.props.goToNextStep();
+	},
+
+	renderChoice( choice ) {
+		return (
+			<Card className="design-type-with-store__choice" key={ choice.type }>
+				<a className="design-type-with-store__choice__link" href="#" onClick={ ( event ) => this.handleChoiceClick( event, choice.type ) }>
+					{ choice.image }
+					<h2>{ choice.label }</h2>
+				</a>
+			</Card>
+		);
+	},
+
+	renderChoices() {
+		return (
+			<div className="design-type-with-store__list">
+				{ this.getChoices().map( this.renderChoice ) }
+			</div>
+		);
+	},
+
+	renderStoreStep() {
+		switch ( abtest( 'signupStoreBenchmarking' ) ) {
+			case 'bluehost':
+				return <BluehostStoreStep { ... this.props } onBackClick={ this.handleStoreBackClick } />;
+			case 'bluehostWithWoo':
+				return <BluehostStoreStep
+					{ ... this.props }
+					onBackClick={ this.handleStoreBackClick }
+					partnerName='Bluehost with WooCommerce'
+					partnerUrl='https://www.bluehost.com/web-hosting/signup?flow=woocommerce'
+				/>;
+			case 'siteground':
+				return <SitegroundStoreStep { ... this.props } onBackClick={ this.handleStoreBackClick } />;
+			default:
+				return <PressableStoreStep { ... this.props } ref={ this.onPressableStoreStepRef } onBackClick={ this.handleStoreBackClick } />;
+		}
+	},
+
+	render() {
+		const storeWrapperClassName = classNames( {
+			'design-type-with-store__store-wrapper': true,
+			'is-hidden': ! this.state.showStore,
+		} );
+
+		const sectionWrapperClassName = classNames( {
+			'design-type-with-store__section-wrapper': true,
+			'is-hidden': this.state.showStore,
+		} );
+
+		return (
+			<div className="design-type-with-store">
+				<div className={ storeWrapperClassName } >
+					{ this.renderStoreStep() }
+				</div>
+				<div className={ sectionWrapperClassName }>
+					<StepWrapper
+						flowName={ this.props.flowName }
+						stepName={ this.props.stepName }
+						positionInFlow={ this.props.positionInFlow }
+						fallbackHeaderText={ this.translate( 'What would you like your homepage to look like?' ) }
+						fallbackSubHeaderText={ this.translate( 'This will help us figure out what kinds of designs to show you.' ) }
+						signupProgressStore={ this.props.signupProgressStore }
+						stepContent={ this.renderChoices() } />
+				</div>
+			</div>
+		);
 	}
 } );
