@@ -11,7 +11,7 @@ import debugFactory from 'debug';
  */
 import config from 'config';
 import WebPreview from 'components/web-preview';
-import { clearPreviewUrl } from 'state/ui/actions';
+import { clearPreviewUrl, hidePreviewSidebar } from 'state/ui/actions';
 import { fetchPreviewMarkup, undoCustomization, clearCustomizations } from 'state/preview/actions';
 import accept from 'lib/accept';
 import { updatePreviewWithChanges } from 'lib/design-preview';
@@ -170,12 +170,14 @@ const DesignPreview = React.createClass( {
 				if ( accepted ) {
 					this.props.clearPreviewUrl( this.props.selectedSiteId );
 					this.props.clearCustomizations( this.props.selectedSiteId );
+					this.props.hidePreviewSidebar();
 					layoutFocus.set( 'sidebar' );
 				}
 			} );
 		}
 		this.props.clearPreviewUrl( this.props.selectedSiteId );
 		this.props.clearCustomizations( this.props.selectedSiteId );
+		this.props.hidePreviewSidebar();
 		layoutFocus.set( 'sidebar' );
 	},
 
@@ -256,5 +258,5 @@ function mapStateToProps( state ) {
 
 export default connect(
 	mapStateToProps,
-	{ fetchPreviewMarkup, undoCustomization, clearCustomizations, clearPreviewUrl }
+	{ fetchPreviewMarkup, undoCustomization, clearCustomizations, clearPreviewUrl, hidePreviewSidebar }
 )( DesignPreview );
