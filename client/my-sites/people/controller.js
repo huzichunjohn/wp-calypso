@@ -1,7 +1,6 @@
 /**
  * External Dependencies
  */
-import ReactDom from 'react-dom';
 import React from 'react';
 import page from 'page';
 import route from 'lib/route';
